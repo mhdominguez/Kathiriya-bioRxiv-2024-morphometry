@@ -23,8 +23,8 @@ p1 <- tdTomato_linear_position %>%
   geom_crossbar(stat = "summary", fun=mean,lwd=2,color="black") +
   #scale_fill_viridis(discrete = TRUE, alpha=0.6) +
   #geom_jitter(color="black", size=0.4, alpha=0.9) +
-  scale_x_discrete(limits=c("Mut","Ctrl"), labels= x_labels) +  
-  geom_jitter(aes(color=Genotype), size=4, alpha=0.9) +
+  scale_x_discrete(limits=c("Mutant","Control"), labels= x_labels) +  
+  geom_jitter(aes(color=Genotype), size=4, alpha=0.6) +
   #facet_wrap(~Region, scale="fixed") +
   #ylab("Integrated Fluoresence Density") +  
   ylab("") +  
@@ -53,8 +53,8 @@ p1 <- tdTomato_linear_position %>%
 ggsave( plot = p1, height=4, width=16, filename = "Ai66 IVS boundary integrity.png", units = "in",dpi = 100 )
 
 
-test_1 <- filter(tdTomato_linear_position, str_detect(Genotype,"Ctrl") )
-test_2  <- filter(tdTomato_linear_position, str_detect(Genotype,"Mut") )
+test_1 <- filter(tdTomato_linear_position, str_detect(Genotype,"Control") )
+test_2  <- filter(tdTomato_linear_position, str_detect(Genotype,"Mutant") )
 
 sink( 'boundary integrity test.txt' )
 t.test(test_1$Value, test_2$Value, alternative = "two.sided", paired = FALSE, var.equal = FALSE)
