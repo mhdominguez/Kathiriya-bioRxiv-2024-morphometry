@@ -39,7 +39,6 @@ colors_use <- c("#dfd175","#8a7b47")
 p1 <- basic_measurements %>%
   ggplot( aes(x=Genotype, y=Value, fill=Genotype))+#, alpha=0.95)) +
   geom_boxplot( outlier.shape = NA, lwd=2, color="black" ) +
-  #scale_fill_viridis(discrete = TRUE, alpha=0.6) +
   geom_jitter(aes(color=Genotype), size=8, alpha=0.75) +
   facet_wrap(~Measurement, scale="fixed", nrow=1, labeller = label_wrap_gen(width=5)) +
   ylab("") +
@@ -47,8 +46,6 @@ p1 <- basic_measurements %>%
   theme_light() +
   scale_y_continuous(breaks=c(0.5,1.0,1.5)) +
   scale_x_discrete(labels= x_labels ) + #, limits = rev) +
-  #scale_color_brewer(palette="YlOrRd") +
-  #scale_fill_brewer(palette="YlOrRd") +
   scale_color_manual(values=darken_hex(colors_use,0.5)) +
   scale_fill_manual(values=colors_use) + #"dark gray", "light gray")) +
   theme(
@@ -76,7 +73,6 @@ for (cat in levels(basic_measurements$Measurement)) {
   test_2  <- filter(filtered_df, str_detect(Genotype,"Mut") )
 
   print( t.test(test_1$Value, test_2$Value, alternative = "two.sided", paired = FALSE, var.equal = FALSE) )
-  #var.test(test_1$Value, test_2$Value,  alternative = "two.sided", paired = FALSE)
   flush.console()
 }
 sink()
